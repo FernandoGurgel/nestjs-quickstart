@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Category } from './category.model';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,5 +13,10 @@ export class CategoryController {
     @Get()
     async index(){
         return await this.categoryRepo.find()
+    }
+
+    @Get(':name')
+    async findByName(@Param() name){
+        return await this.categoryRepo.find
     }
 }
